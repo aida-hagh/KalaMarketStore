@@ -1,0 +1,18 @@
+﻿@model ImageAdvertise
+
+
+@if (Model != null)
+{
+    <div class="col-lg-3 col-md-3 col-xs-12 pr">
+        <div class="adplacement-container-column mt-4">
+
+            <a href="#" class="adplacement-item img-banner">
+                <div class="adplacement-sponsored-box">
+                    <img src="/Site/assets/images/@Model.ImageAdvertise_Image" alt="@Model.ImageAdvertise_Title">
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable< ValueViewModel>
+@{
+    Layout = null;
+}
+
+
+<article>
+    <h2 class="params-headline">
+        مشخصات فنی
+    </h2>
+    <section>
+        <ul class="params-list">
+            @foreach (var item in Model)
+            {
+                            <li class="params-list-item">
+                <div class="params-list-key">
+                    <span class="block">@item.PropertyName</span>
+                </div>
+                <div class="params-list-value">
+                    <span class="block">
+                       @item.value
+                    </span>
+                </div>
+            </li>
+
+            }
+        
+        </ul>
+    </section>
+    </article>
+
+
+
+
+<!-- file js---------------------------------------------------->
+<script src="/Site/assets/js/vendor/jquery-3.2.1.min.js"></script>
+<script src="/Site/assets/js/vendor/bootstrap.js"></script>
+<!-- plugin----------------------------------------------------->
+<script src="/Site/assets/js/vendor/owl.carousel.min.js"></script>
+<script src="/Site/assets/js/vendor/jquery.countdown.js"></script>
+<script src="/Site/assets/js/vendor/jquery.nice-select.min.js"></script>
+<!-- main js---------------------------------------------------->
+<script src="/Site/assets/js/main.js"></script>

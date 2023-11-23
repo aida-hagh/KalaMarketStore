@@ -1,0 +1,44 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "افزودن دسته بندی";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="card-box">
+
+
+        <form asp-action="Add" method="post" >
+            @if (ViewBag.Id!=0)
+            {
+            <input hidden asp-for="SubCategiry" value="@ViewBag.Id" />
+
+            }
+            <div class="form-group">
+                <label asp-for="CategoryFaTitle" for="title"> </label>
+                <input asp-for="CategoryFaTitle"  parsley-trigger="change"  class="form-control" id="title" data-parsley-id="4">
+                <span asp-validation-for="CategoryFaTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryEnTitle" for="Alt">  </label>
+                <input asp-for="CategoryEnTitle"  parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="CategoryEnTitle" class="text-danger"></span>
+
+            </div>
+
+
+
+            <div class="form-group text-right m-b-0">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    ثبت اطلاعات
+                </button>
+                <a asp-action="Index" class="btn btn-default waves-effect waves-light m-l-5">
+                    لغو
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+

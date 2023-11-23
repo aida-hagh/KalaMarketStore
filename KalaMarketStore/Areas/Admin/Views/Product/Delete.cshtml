@@ -1,0 +1,40 @@
+﻿@model Product
+@{
+    ViewData["Title"] = $" حذف محصول {Model.ProductFaTitle} ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div >
+    <h4 class="label label-default p-10">@ViewData["Title"]</h4>
+</div>
+<br />
+
+<div class="col-lg-3"></div>
+
+<div class="col-lg-6">
+    <div class="card-box p-30">
+        <p class="font-bold">
+            آیا میخواهید این <strong class="text-danger">  محصول </strong>  حذف شود؟
+        </p>
+
+        <form asp-action="Delete">
+
+            <input asp-for="ProductId" type="hidden" />
+            <input asp-for="ProductFaTitle" type="hidden" />
+            <input asp-for="ProductEnTitle" type="hidden" />
+        
+
+            <div class="form-group text-right m-b-0">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    حذف
+                </button>
+                <a asp-action="Index" class="btn btn-default waves-effect waves-light m-l-5">
+                    لغو
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="col-lg-3"></div>
+

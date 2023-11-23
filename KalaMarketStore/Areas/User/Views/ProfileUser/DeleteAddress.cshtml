@@ -1,0 +1,55 @@
+﻿@model ShowAddressForUserViewModel
+
+<div>
+    <h4 class="label label-default p-10">@ViewData["Title"]</h4>
+</div>
+<br />
+
+
+<div class="row mt-10">
+    <div class="col-lg-4"></div>
+
+    <div class="col-lg-4" style="border: 5px solid #e4d9d9b0; padding: 47px;border-radius: 35px;margin-top: 150px;
+    margin-bottom: 150px;
+}">
+ 
+ 
+
+        <div class=" ">
+            <span class="font-bold">
+                آیا میخواهید این <strong class="text-danger">  * آدرس * </strong>  حذف شود؟
+            </span>
+
+            <form asp-action="DeleteAddress" method="post">
+
+                <input asp-for="UserAddressId" type="hidden" />
+                <input asp-for="CityId" type="hidden" />
+                <input asp-for="ProvinceName" type="hidden" />
+                <input asp-for="CityName" type="hidden" />
+                <input asp-for="RecipientName" type="hidden" />
+                <input asp-for="Plaque" type="hidden" />
+                <input asp-for="Phone" type="hidden" />
+                <input asp-for="Mobile" type="hidden" />
+                <input asp-for="FullAddress" type="hidden" />
+                <input asp-for="PostalCode" type="hidden" />
+     
+
+
+                <div class="form-group text-right m-b-0" style="float: left; margin-top: 38px;">
+   
+                    <button class="btn btn-primary waves-effect waves-light" type="submit">
+                        حذف
+                    </button>
+                    <a href="/User/ProfileUser/Address" class="btn btn-default waves-effect waves-light m-l-5">
+                        لغو
+                    </a>
+                </div>
+
+            </form>
+        </div>
+       </div>
+       </div>
+
+
+<div class="col-lg-4"></div>
+

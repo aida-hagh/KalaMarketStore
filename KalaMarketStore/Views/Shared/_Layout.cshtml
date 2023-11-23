@@ -1,0 +1,31 @@
+﻿@inject ICategoryService _service;
+@{
+    var categories = _service.GetAllCategoryForMenu();
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه اینترنتی کالا مارکت</title>
+    <partial name="_Css" />
+</head>
+<body>
+
+
+    <partial name="_Header" model="categories" />
+
+
+    @RenderBody()
+
+    <partial name="_Footer" />
+
+</body>
+
+<partial name="_script" />
+
+
+@RenderSection("scripts" ,false)
+
+</html>

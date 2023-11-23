@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ImageAdvertise>
+
+
+@if (Model != null)
+{
+    <div class="col-lg-4 col-md-4 col-xs-12 pl mt-1">
+        <div class="adplacement-container-column">
+            @foreach (var item in Model)
+            {
+                <a href="#" class="adplacement-item">
+                    <div class="adplacement-sponsored-box">
+                        <img src="/Site/assets/images/@item.ImageAdvertise_Image" alt="@item.ImageAdvertise_Title" />
+                    </div>
+                </a>
+
+            }
+
+        </div>
+    </div>
+}
+
+

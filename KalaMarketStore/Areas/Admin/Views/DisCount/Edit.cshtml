@@ -1,0 +1,68 @@
+﻿@model DisCount
+@{
+    ViewData["Title"] = $"ویرایش کد تخفیف";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div>
+    <h4 class="label label-default p-10">@ViewData["Title"]</h4>
+</div>
+
+<br />
+
+<div class="col-lg-12">
+    <div class="card-box">
+
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input asp-for="DisCountId" hidden/>
+
+ 
+            <div class="form-group">
+                <label asp-for="DisCountCode" for="title"> کد تخفیف</label>
+                <input asp-for="DisCountCode" type="text" parsley-trigger="change" placeholder="کد تخفیف محصول را وارد کنید" class="form-control" id="title" data-parsley-id="4">
+                <span asp-validation-for="DisCountCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DisCountPersent" for="Alt">  درصد تخفیف </label>
+                <input asp-for="DisCountPersent" type="text" parsley-trigger="change" placeholder="کد تخفیف محصول را وارد کنید" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="DisCountPersent" class="text-danger"></span>
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="UseableCount" for="Alt">  تعداد تخفیف </label>
+                <input asp-for="UseableCount" type="number" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="UseableCount" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StartDate" for="Alt">   </label>
+                <input asp-for="StartDate" type="date" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" for="Alt">   </label>
+                <input asp-for="EndDate" type="date" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+
+            </div>
+
+
+            <div class="form-group text-right m-b-0">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    ثبت اطلاعات
+                </button>
+                <a asp-action="Index" class="btn btn-default waves-effect waves-light m-l-5">
+                    لغو
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+

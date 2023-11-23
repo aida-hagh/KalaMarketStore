@@ -1,0 +1,116 @@
+﻿@model IEnumerable<RolePermission>
+@{
+    ViewData["Title"] = "لیست دسترسی نقش ها";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    int counter = 1;
+
+}
+
+
+<div class="col-sm-12">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-5">
+                    <p class="pull-left">
+                        <a class="btn btn-primary btn-lg" href="/Admin/RolePermission/Add"> افزودن  </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="editable-responsive">
+                <div id="datatable-editable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @if (TempData["Result"] != null)
+                            {
+                                @if (TempData["Result"].ToString() == "true")
+                                {
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        اطلاعات  با موفقیت ثبت شد.
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        خطا در انجام عملیات
+                                    </div>
+                                }
+                            }
+
+                            @if (TempData["NotFoundProductColor"] != null)
+                            {
+                                <script>
+                                    setTimeout(function () {
+                                        Swal.fire({
+                                            position: 'top-end',
+                                            icon: 'error',
+                                            title: ' یافت نشد.',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    }, 50)
+                                </script>
+                            }
+                            <table class="table table-striped dataTable no-footer" id="datatable-editable" RolePermission="grid" aria-describedby="datatable-editable_info">
+                                <thead>
+                                    <tr RolePermission="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور جستجو: activate to sort column descending" style="width: 156px;">#</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 328px;"> نقش</th>
+                                        <th class="sorting" tabindex="0" aria-controls="datatable-editable" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending" style="width: 328px;"> دسترسی</th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="فعالیت" style="width: 98px;">فعالیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Count() > 0)
+                                    {
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="gradeX odd" RolePermission="row">
+
+                                                <td>@counter</td>
+                                                <td>
+                                                    @item.Role.RoleTitle
+                                                </td>
+                                                <td>
+                                                    @item.Permission.PermissionTitle
+                                                </td>
+
+                                                <td class="actions">
+                                                    <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                                    <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                                    <a href="/Admin/RolePermission/Edit/@item.RolePermissionId" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                    <a href="/Admin/RolePermission/Delete/@item.RolePermissionId" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                </td>
+                                            </tr>
+                                            counter++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr class="alert alert-danger">
+                                            موجود نمی باشد.
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end: panel body -->
+
+
+    </div>
+</div>
+
+
+<a href="/Admin/Permission/Index" style=" float:left;" class="fa fa-arrow-right">   بازگشت   </a>

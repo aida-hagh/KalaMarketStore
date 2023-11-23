@@ -1,0 +1,49 @@
+﻿@model ProductColor
+@{
+    ViewData["Title"] = "افزودن رنگ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="/AdminPanel/assets/plugins/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+<div class="col-lg-12">
+    <div class="card-box">
+
+
+        <form asp-action="Add" method="post" >
+
+            <div class="form-group">
+                <label asp-for="ColorName" for="title"> اسم رنگ</label>
+                <input asp-for="ColorName" type="text" parsley-trigger="change" placeholder="اسم رنگ را وارد کنید" class="form-control" id="title" data-parsley-id="4">
+                <span asp-validation-for="ColorName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label >  انتخاب رنگ </label>
+                <input asp-for="ColorCode" type="text" class="colorpicker-rgba form-control"  data-color-format="rgba">
+                <span asp-validation-for="ColorCode" class="text-danger"></span>
+            </div>
+
+            <span class="text-danger">@Html.ValidationMessage("ErrorColor")</span>
+
+            <div class="form-group text-right m-b-0">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    ثبت اطلاعات
+                </button>
+                <a asp-action="Index" class="btn btn-default waves-effect waves-light m-l-5">
+                    لغو
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="/AdminPanel/assets/plugins/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<script>
+    //تگی که این کلاس رو داره به یک کالر پیکر تبدیل بشه
+        $('.colorpicker-rgba').colorpicker();
+</script>
+
+}

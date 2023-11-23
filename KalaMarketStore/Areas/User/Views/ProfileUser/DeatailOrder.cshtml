@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CartViewModel>
+
+<div class="container-main">
+    <div class="d-block">
+        <section class="profile-home">
+            <div class="col-lg">
+                <div class="post-item-profile order-1 d-block">
+                    <div class="col-lg-3 col-md-3 col-xs-12 pr">
+                 
+
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-xs-12 pl">
+                        <div class="profile-content">
+                            <div class="profile-stats">
+                                <div class="table-order-view">
+                                    <h2 class="order-view-title mt-4 mb-3">جزییات سفارش </h2>
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">نام محصول</th>
+                                                <th scope="col"> تعداد</th>
+                                                <th scope="col">قیمت</th>
+                                                <th scope="col">  مجموع قیمت</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                      <tr>
+                                                @*<td class="product-name">تی شرت ورزشی نخی مردانه فلوریزا طرح بوکس کد  boxing 002M تیشرت</td>*@
+                                                 <td scope="row" class="product-cart-name">
+                                                        <div class="product-thumbnail-img">
+                                                            <a href="#">
+                                                                <img src="/Site/assets/images/@item.ProductImg" style="max-width: 20%;">
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-title">
+                                                            <a href="#">
+                                                                @item.ProductFaName
+                                                            </a>
+                                                            <div class="variation">
+                                                                <div class="variant-color">
+                                                                    <span class="variant-color-title">@item.ColorName</span>
+                                                                    <div class="variant-shape" style="background-color:@item.ColorCode;"></div>
+                                                                </div>
+                                                                <div class="variant-guarantee">
+                                                                    <i class="mdi mdi-check"></i>
+                                                                    @item.GuaranteeName
+                                                                </div>
+                                                                <div class="seller">
+                                                                    فروشنده :
+                                                                    <span>دیجی اسمارت</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                <td>@item.ProductCount</td>                                                
+                                                <td>@item.ProductPrice</td>                                                
+                                                <td class="product-total">
+                                                    <span class="amount">
+                                                        <span>تومان</span>
+                                                            @(item.ProductPrice*item.ProductCount)
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            }
+                                      
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th scope="row">مجموع:</th>
+                                                <td>
+                                                    <span class="amount">
+                                                        <span>تومان</span>
+                                                        40,000
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">حمل و نقل:</th>
+                                                <td>حمل و نقل رایگان</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">روش پرداخت:</th>
+                                                <td>انتقال مستقیم بانکی</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">تعداد</th>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">قیمت نهایی:</th>
+                                                <td>
+                                                    <span class="amount">
+                                                        <span>تومان</span>
+                                                        40,000
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <br>
+                                    <br>
+                                    <div class="order-view-customer">
+                                        <div class="box-header">
+                                            <span class="box-title">نشانی ما</span>
+                                        </div>
+                                        <div class="profile-address-item">
+                                            <div class="profile-address-content">
+                                                <ul class="profile-address-info">
+                                                    <li>
+                                                        <div class="profile-address-info-item location">
+                                                            <span class="title-address">آدرس : </span>
+                                                            خراسان شمالی، بجنورد
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="profile-address-info-item location">
+                                                            <span class="title-address">ایمیل : </span>
+                                                            info@digismart.com
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="profile-address-info-item location">
+                                                            <span class="title-address">شماره تلفن : </span>
+                                                            0991*******
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="profile-address-info-item location">
+                                                            <span class="title-address">کد پستی : </span>
+                                                            945789651235
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

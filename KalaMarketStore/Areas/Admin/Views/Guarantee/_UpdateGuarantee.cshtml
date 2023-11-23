@@ -1,0 +1,28 @@
+﻿@model ProductGuarantee
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" method="post"
+              data-ajax="true"
+              data-Success="Refresh"
+              enctype="multipart/form-data">
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input asp-for="GuaranteeId" hidden/>
+                <label asp-for="GuaranteeName" class="control-label"></label>
+                <input asp-for="GuaranteeName" class="form-control" />
+                <span asp-validation-for="GuaranteeName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+                <button type="submit" value="Create" class="btn btn-primary">ویرایش</button>
+            </div>
+
+        </form>
+    </div>
+</div>

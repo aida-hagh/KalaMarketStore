@@ -1,0 +1,81 @@
+﻿@model ProductPrice
+@{
+    ViewData["Title"] = "افزودن محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="card-box">
+
+
+        <form asp-action="AddPrice" method="post" enctype="multipart/form-data">
+            <input hidden asp-for="ProductId" value="@ViewBag.id" />
+            <div class="form-group">
+                <label asp-for="MainPrice" for="title">   </label>
+                <input asp-for="MainPrice" type="text" parsley-trigger="change" placeholder="عنوان محصول را وارد کنید" class="form-control" id="title" data-parsley-id="4">
+                <span asp-validation-for="MainPrice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SpecialPrice" for="Alt">     </label>
+                <input asp-for="SpecialPrice" type="text" parsley-trigger="change" placeholder="عنوان محصول را وارد کنید" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="SpecialPrice" class="text-danger"></span>
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Count" for="Alt">    </label>
+                <input asp-for="Count" type="number" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="Count" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MaxOrderCount" for="Alt">   </label>
+                <input asp-for="MaxOrderCount" type="number" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="MaxOrderCount" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ColorId">رنگ محصول </label>
+                <select asp-for="ColorId" asp-items="@ViewBag.Color" class="form-control">
+                    <option value=""> انتخاب کنید</option>
+
+                </select>
+                <span asp-validation-for="ColorId" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GuaranteeId">گارانتی محصول</label>
+
+                <select asp-for="GuaranteeId" asp-items="@ViewBag.Guarantee" class="form-control">
+                    <option value=""> انتخاب کنید</option>
+
+                </select>
+                <span asp-validation-for="GuaranteeId" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EndDateDisCount" for="Alt">   </label>
+                <input asp-for="EndDateDisCount" type="date" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="EndDateDisCount" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group text-right m-b-0">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    ثبت اطلاعات
+                </button>
+                <a asp-action="Index" class="btn btn-default waves-effect waves-light m-l-5">
+                    لغو
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+

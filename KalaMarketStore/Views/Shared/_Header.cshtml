@@ -1,0 +1,270 @@
+﻿@model IEnumerable<Category>
+@{
+    var result = ViewBag.categoryProductMenu;
+}
+<!-- header-------------------------------->
+<header class="header-main">
+    <div class="container-main">
+        <div class="d-block">
+            <section class="h-main-row">
+                <div class="col-lg-9 col-xs-12 pr">
+                    <div class="header-right">
+                        <div class="col-lg-3 pr">
+                            <div class="header-logo row text-right">
+                                <a href="#">
+                                    <img src="/Site/assets/images/logo.png" alt="دیجی اسمارت">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 pl">
+                            <div class="header-search row text-right">
+                                <div class="header-search-box">
+                                    <form asp-controller="Product" asp-action="Search" method="get" class="form-search">
+                                        <input value="@ViewBag.text" type="search" class="header-search-input" name="text" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                                        <div class="action-btns">
+                                            <button class="btn btn-search" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 pl">
+                    <div class="header-left">
+                        <div class="header-account text-left">
+                            <div class="d-block">
+                                <div class="account-box">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="nav-account d-block pl">
+                                            <span class="icon-account">
+                                                <img src="/Site/assets/images/man.png" class="avator">
+                                            </span>
+                                            <span class="title-account">حساب کاربری</span>
+                                            <div class="dropdown-menu">
+                                                <ul class="account-uls mb-0">
+                                                    <li class="account-item">
+                                                        <a href="/User/ProfileUser/Index" class="account-link">پنل کاربری</a>
+                                                    </li>
+                                                    <li class="account-item">
+                                                        <a href="#" class="account-link">سفارشات من</a>
+                                                    </li>
+                                                    <li class="account-item">
+                                                        <a href="#" class="account-link">تنظیمات</a>
+                                                    </li>
+                                                    <li class="account-item">
+                                                        <a href="#" class="account-link">خروج</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="nav-account d-block pl">
+
+                                            <span class="title-account">
+                                                <a href="/Account/Login">ورود</a> / <a href="/Account/Register">ثبت نام</a>
+                                            </span>
+
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div>
+                <nav class="header-main-nav">
+                    <div class="d-block">
+                        <div class="align-items-center">
+
+                            <ul class="menu-ul mega-menu-level-one">
+
+                                @foreach (var item in Model.Where(x => x.SubCategiry == null).Take(7))
+                                {
+                                    <li id="nav-menu-item" class="menu-item nav-overlay">
+                                        <a asp-controller="Product" asp-action="Search" asp-route-categoryid="@item.CategoryId" class="current-link-menu">
+                                            @item.CategoryFaTitle
+                                        </a>
+                                        @if (Model.Where(x => x.SubCategiry == item.CategoryId).Count() > 0)
+                                        {
+                                            <ul class="sub-menu is-mega-menu mega-menu-level-two">
+                                                @foreach (var item2 in Model.Where(x => x.SubCategiry == item.CategoryId).Take(4))
+                                                {
+                                                    <li class="menu-mega-item menu-item-type-mega-menu">
+                                                        <a asp-controller="Product" asp-action="Search" asp-route-categoryid="@item2.CategoryId" class="mega-menu-link">
+                                                            @item2.CategoryFaTitle
+                                                        </a>
+                                                        <ul class="sub-menu mega-menu-level-three">
+                                                            @foreach (var item3 in Model.Where(x => x.SubCategiry == item2.CategoryId).Take(7))
+                                                            {
+                                                                <li class="menu-mega-item-three">
+                                                                    <a asp-controller="Product" asp-action="Search" asp-route-categoryid="@item3.CategoryId">
+                                                                        @item3.CategoryFaTitle
+                                                                    </a>
+                                                                </li>
+
+                                                            }
+                                                        </ul>
+                                                    </li>
+                                                }
+
+                                            </ul>
+                                        }
+
+                                    </li>
+                                }
+
+
+                                <div class="divider-space-card d-block">
+                                </div>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!--    responsive-megamenu-mobile----------------->
+            <nav class="sidebar">
+                <div class="nav-header">
+                    <div class="header-cover"></div>
+                    <div class="logo-wrap">
+                        <a class="logo-icon" href="#"><img alt="logo-icon" src="/Site/assets/images/logo.png" width="40"></a>
+                    </div>
+                </div>
+                <ul class="nav-categories ul-base">
+                    <li>
+                        <a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="mdi mdi-chevron-down"></i>کالای دیجیتال</a>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
+                            <ul>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">لوازم جانبی گوشی</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">کیف و کاور گوشی</a></li>
+                                        <li><a href="#" class="category-level-3">پاور بانک(شارژر همراه)</a></li>
+                                        <li><a href="#" class="category-level-3">پایه نگهدارنده گوشی</a></li>
+                                        <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">گوشی موبایل</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">سامسونگ</a></li>
+                                        <li><a href="#" class="category-level-3">هوآوی</a></li>
+                                        <li><a href="#" class="category-level-3">اپل</a></li>
+                                        <li><a href="#" class="category-level-3">شیائومی</a></li>
+                                        <li><a href="#" class="category-level-3">آنر</a></li>
+                                        <li><a href="#" class="category-level-3">نوکیا</a></li>
+                                        <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">دوربین</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">دوربین عکاسی دیجیتال</a></li>
+                                        <li><a href="#" class="category-level-3">دوربین ورزشی و فیلم برداری</a></li>
+                                        <li><a href="#" class="category-level-3">دوربین چاپ سریع</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="mdi mdi-chevron-down"></i>آرایشی و بهداشتی</a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample" style="">
+                            <ul>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">لوازم جانبی گوشی</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">کیف و کاور گوشی</a></li>
+                                        <li><a href="#" class="category-level-3">پاور بانک(شارژر همراه)</a></li>
+                                        <li><a href="#" class="category-level-3">پایه نگهدارنده گوشی</a></li>
+                                        <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">گوشی موبایل</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">سامسونگ</a></li>
+                                        <li><a href="#" class="category-level-3">هوآوی</a></li>
+                                        <li><a href="#" class="category-level-3">اپل</a></li>
+                                        <li><a href="#" class="category-level-3">شیائومی</a></li>
+                                        <li><a href="#" class="category-level-3">آنر</a></li>
+                                        <li><a href="#" class="category-level-3">نوکیا</a></li>
+                                        <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">دوربین</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">دوربین عکاسی دیجیتال</a></li>
+                                        <li><a href="#" class="category-level-3">دوربین ورزشی و فیلم برداری</a></li>
+                                        <li><a href="#" class="category-level-3">دوربین چاپ سریع</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">ابزار و اداری</a></li>
+                    <li><a href="#">مد و پوشاک</a></li>
+                    <li>
+                        <a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="mdi mdi-chevron-down"></i>خانه و آشپزخانه</a>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample" style="">
+                            <ul>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">لوازم جانبی گوشی</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">کیف و کاور گوشی</a></li>
+                                        <li><a href="#" class="category-level-3">پاور بانک(شارژر همراه)</a></li>
+                                        <li><a href="#" class="category-level-3">پایه نگهدارنده گوشی</a></li>
+                                        <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">گوشی موبایل</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">سامسونگ</a></li>
+                                        <li><a href="#" class="category-level-3">هوآوی</a></li>
+                                        <li><a href="#" class="category-level-3">اپل</a></li>
+                                        <li><a href="#" class="category-level-3">شیائومی</a></li>
+                                        <li><a href="#" class="category-level-3">آنر</a></li>
+                                        <li><a href="#" class="category-level-3">نوکیا</a></li>
+                                        <li><a href="#" class="category-level-3">همه موارد این دسته</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-sub">
+                                    <a href="#" class="category-level-2">دوربین</a>
+                                    <ul>
+                                        <li><a href="#" class="category-level-3">دوربین عکاسی دیجیتال</a></li>
+                                        <li><a href="#" class="category-level-3">دوربین ورزشی و فیلم برداری</a></li>
+                                        <li><a href="#" class="category-level-3">دوربین چاپ سریع</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">لوازم تحریر و هنر</a></li>
+                    <li><a href="#">کودک و نوزاد</a></li>
+                </ul>
+            </nav>
+            <div class="nav-btn nav-slider">
+                <span class="linee1"></span>
+                <span class="linee2"></span>
+                <span class="linee3"></span>
+            </div>
+            <div class="overlay"></div>
+            <!--    responsive-megamenu-mobile----------------->
+        </div>
+    </div>
+</header>
+<div class="nav-categories-overlay"></div>
+<!-- header-------------------------------->

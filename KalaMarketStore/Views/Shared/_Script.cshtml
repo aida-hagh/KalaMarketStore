@@ -1,0 +1,31 @@
+﻿<!-- file js---------------------------------------------------->
+<script src="~/Site/assets/js/vendor/jquery-3.2.1.min.js"></script>
+<script src="~/Site/assets/js/vendor/bootstrap.js"></script>
+<!-- plugin----------------------------------------------------->
+<script src="~/Site/assets/js/vendor/owl.carousel.min.js"></script>
+<script src="~/Site/assets/js/vendor/jquery.countdown.js"></script>
+<script src="~/Site/assets/js/vendor/jquery.nice-select.min.js"></script>
+<!-- main js---------------------------------------------------->
+<script src="~/Site/assets/js/main.js"></script>
+<script src="~/site/assets/js/vendor/nouislider.min.js"></script>
+<script src="~/site/assets/js/vendor/theia-sticky-sidebar.min.js"></script>
+<script src="~/site/assets/js/vendor/wnumb.js"></script>
+
+
+
+<script>
+    $(function () {
+        showbasket()
+    })
+    function showbasket() {
+
+        $.ajax({
+            type: "get",
+            url: "/ShowProductListForBasket",
+            success: function (e) {
+                $(".divider-space-card").html(e);
+
+            }
+        });
+    }
+</script>

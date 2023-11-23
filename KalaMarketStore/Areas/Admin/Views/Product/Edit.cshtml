@@ -1,0 +1,183 @@
+﻿@model Product
+@{
+    ViewData["Title"] = $"ویرایش محصول{Model.ProductImage}";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+   // var categories = ViewBag.AllCategory as List<Category>;
+}
+
+
+<div>
+    <h4 class="label label-default p-10">@ViewData["Title"]</h4>
+</div>
+
+<br />
+
+<div class="col-lg-12">
+    <div class="card-box">
+
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input asp-for="ProductId" hidden />
+
+            <div class="form-group">
+                <label asp-for="ProductFaTitle" for="title"> اسم فارسی محصول</label>
+                <input asp-for="ProductFaTitle" type="text" parsley-trigger="change" placeholder="عنوان محصول را وارد کنید" class="form-control" id="title" data-parsley-id="4">
+                <span asp-validation-for="ProductFaTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductEnTitle" for="Alt">  اسم انگلیسی محصول </label>
+                <input asp-for="ProductEnTitle" type="text" parsley-trigger="change" placeholder="عنوان محصول را وارد کنید" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="ProductEnTitle" class="text-danger"></span>
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ProductWeight" for="Alt">  وزن محصول </label>
+                <input asp-for="ProductWeight" type="number" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="ProductWeight" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductSell" for="Alt">  تعداد فروش محصول </label>
+                <input asp-for="ProductSell" type="number" parsley-trigger="change" class="form-control" id="Alt" data-parsley-id="4">
+                <span asp-validation-for="ProductSell" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId">دسته محصول</label>
+                @* <select asp-for="CategoryId" asp-items="@ViewBag.Category" class="form-control">*@
+                <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Category">
+                    <option value=""> انتخاب کنید</option>
+               
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SubCategoryId">زیردسته محصول</label>
+                <select asp-for="SubCategoryId" class="form-control" >
+                    <option value="0"> انتخاب کنید</option>
+                </select>
+                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SecondSubCategoryId">زیردسته زیردسته</label>
+                <select asp-for="SecondSubCategoryId" class="form-control">
+                    <option value="0"> انتخاب کنید</option>
+                </select>
+                <span asp-validation-for="SecondSubCategoryId" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BrandId">برند محصول</label>
+                <select asp-for="BrandId" asp-items="@ViewBag.Brand" class="form-control">
+                    <option value=""> انتخاب کنید</option>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductStars">امتیاز محصول</label>
+                <select asp-for="ProductStars" class="form-control">
+                    <option value="1">تک ستاره</option>
+                    <option value="2">دوستاره</option>
+                    <option value="3">سه ستاره</option>
+                    <option value="4">چهارستاره</option>
+                    <option value="5">پنج ستاره</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="ProductImage" hidden />
+                <label asp-for="ProductImage" for="img"> تصویر محصول</label>
+                <input name="file" type="file" parsley-trigger="change" placeholder="تصویر محصول را وارد کنید" class="form-control" id="img" data-parsley-id="4">
+                <span asp-validation-for="ProductImage" class="text-danger"></span>
+                <img width="140" height="130" class="img-thumbnail" src="~/Site/assets/images/@Model.ProductImage" />
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductTag">  برچسب محصول </label>
+                <textarea asp-for="ProductTag" class="form-control">
+                </textarea>
+                <br />
+                <div class=" alert alert-warning">
+                    برای جداسازی برچسب ها از علامت
+                    <strong class="text-danger"> ^ </strong>
+                    استفاده کنید
+                </div>
+                <span asp-validation-for="ProductEnTitle" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="checkbox checkbox-custom">
+                    <input asp-for="IsActive" id="remember-1" type="checkbox">
+                    <label asp-for="IsActive" for="remember-1"> آیا فعال باشد؟ </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox checkbox-success">
+                    <input asp-for="IsOrginal" id="remember-1" type="checkbox">
+                    <label asp-for="IsOrginal" for="remember-1"> آیا محصول اصل است؟ </label>
+                </div>
+            </div>
+
+            <div class="form-group text-right m-b-0">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">
+                    ثبت اطلاعات
+                </button>
+                <a asp-action="Index" class="btn btn-default waves-effect waves-light m-l-5">
+                    لغو
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#CategoryId").change(function () {
+            var categoryId = $(this).val();
+
+            $.ajax({
+                url: "/admin/category/GetSubCategory?cateid=" + categoryId,
+                type: "get"
+            }).done(function (data) {
+                $("#SubCategoryId").html(`<option value='0'>انتخاب کنید</option>`);
+                console.log(data);
+                for (var i in data) {
+                    var category = data[i];
+                    $("#SubCategoryId").append(`<option value='${category.categoryId}'>${category.categoryFaTitle}</option>`);
+                }
+            });
+        })
+    </script>
+    <script>
+        $("#SubCategoryId").change(function () {
+            var subCategoryId = $(this).val();
+
+            $.ajax({
+                url: "/admin/category/GetSubCategory?cateid=" + subCategoryId,
+                type: "get"
+            }).done(function (data) {
+                $("#SecondSubCategoryId").html(`
+                                <option value='0'>انتخاب کنید</option>`);
+                console.log(data);
+                for (var i in data) {
+                    var category = data[i];
+                    $("#SecondSubCategoryId").append(`
+                                                <option value='${category.categoryId}'>${category.categoryFaTitle}</option>`);
+                }
+            });
+        })
+    </script>
+
+}

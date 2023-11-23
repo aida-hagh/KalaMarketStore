@@ -1,0 +1,101 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>   ورود</title>
+
+    <!-- font---------------------------------------->
+    <link rel="stylesheet" href="/Site/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="/Site/assets/css/vendor/materialdesignicons.css">
+    <!-- plugin-------------------------------------->
+    <link rel="stylesheet" href="/Site/assets/css/vendor/bootstrap.css">
+    <link rel="stylesheet" href="/Site/assets/css/vendor/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Site/assets/css/vendor/nice-select.css">
+    <!-- main-style---------------------------------->
+    <link rel="stylesheet" href="/Site/assets/css/main.css">
+    <link rel="stylesheet" href="/Site/assets/css/responsive.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            <section class="page-account-box">
+                <div class="col-lg-6 col-md-6 col-xs-12 mx-auto">
+                    <div class="ds-userlogin">
+                        <a href="#" class="account-box-logo">digismart</a>
+                        <div class="account-box">
+                            <div class="account-box-headline">
+                                    <a class="login-ds active">
+                                    <span class="title">ورود</span>
+                                    <span class="sub-title">به دیجی اسمارت</span>
+                                </a>
+                                    <a href="/Account/Register" class="register-ds">
+                                    <span class="title">ثبت نام</span>
+                                    <span class="sub-title">در دیجی اسمارت</span>
+                                </a>
+                            </div>
+                            <div class="Login-to-account mt-4">
+                                <div class="account-box-content">
+                                    <h4>ورود به حساب کاربری</h4>
+                                    <form asp-action="Login" method="post" class="form-account text-right">
+                                        <div class="form-account-title">
+                                            <label for="email-phone">ایمیل / شماره موبایل</label>
+                                            <input asp-for="Email" type="text" class="number-email-input" id="email-phone" >
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-account-title">
+                                            <label for="password">رمز عبور</label>
+                                            <a href="#" class="account-link-password">رمز خود را فراموش کرده ام</a>
+                                            <input asp-for="Password" type="password" class="password-input" >
+                                             <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-auth-row">
+                                            <label for="#" class="ui-checkbox mt-1">
+                                                <input type="checkbox" asp-for="RememberMe" id="remember">
+                                                <span class="ui-checkbox-check"></span>
+                                            </label>
+                                            <label for="remember" class="remember-me mr-0">مرا به خاطر بسپار</label>
+                                        </div>
+                                        <div class="form-row-account">
+                                            <button type="submit" class="btn btn-primary btn-login">ورود به دیجی اسمارت</button>
+                                        </div>
+                                            <span asp-validation-for="RememberMe" class="text-danger"></span>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+    <!-- scroll_Progress------------------------->
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- scroll_Progress------------------------->
+    <!-- file js---------------------------------------------------->
+    <script src="/Site/assets/js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="/Site/assets/js/vendor/bootstrap.js"></script>
+    <!-- plugin----------------------------------------------------->
+    <script src="/Site/assets/js/vendor/owl.carousel.min.js"></script>
+    <script src="/Site/assets/js/vendor/jquery.countdown.js"></script>
+    <script src="/Site/assets/js/vendor/jquery.nice-select.min.js"></script>
+    <!-- main js---------------------------------------------------->
+    <script src="/Site/assets/js/main.js"></script>
+</body>
+</html>

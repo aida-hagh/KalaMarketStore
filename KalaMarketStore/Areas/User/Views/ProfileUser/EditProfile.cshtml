@@ -1,0 +1,76 @@
+﻿@model User
+@{
+    ViewData["Title"] = $" ویرایش کاربر : {Model.UserAccount}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="container-main">
+    <div class="d-block">
+        <section class="profile-home">
+            <div class="col-lg">
+                <div class="post-item-profile order-1 d-block">
+                    <div class="col-lg-3 col-md-3 col-xs-12 pr">
+
+                        <partial name="_SidebarUser" />
+
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-xs-12 pl">
+                        <div class="profile-content">
+                            <div class="profile-stats">
+                                <div class="profile-address">
+                                    <div class="middle-container">
+                                        <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+
+                                            <input asp-for="UserId" type="hidden" />
+                                            <input asp-for="Password" type="hidden" />
+                                            <input asp-for="ActiveCode" type="hidden" />
+                                            <input asp-for="UserAccount" type="hidden" />
+
+                                            <div class="form-checkout-row">
+
+                                                <div>
+                                                    <label asp-for="UserName" for="title"> نام <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+                                                       
+                                                        <input asp-for="UserName" class="input-name-checkout form-control">
+                                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                                </div>
+                                                <div>
+                                                    <label asp-for="UserName" for="title"> نام خانوادگی <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+
+                                                    <input asp-for="UserFamily" class="input-name-checkout form-control">
+                                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                                </div>
+
+                                                <div>
+                                                    <label for="phone-number">شماره موبایل <abbr class="required" title="ضروری" style="color:red;">*</abbr></label>
+                                                    <input asp-for="Mobile" class="input-name-checkout form-control text-left">
+                                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                                </div>
+
+                                                <div>
+                                                    <label asp-for="Email">ایمیل </label>
+                                                    <input asp-for="Email" class="input-name-checkout form-control text-left">
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                                </div>
+                               
+
+                                                <div class="AR-CR">
+                                                    <button type="submit" class="btn-registrar"> ثبت آدرس</button>
+                                                    <a href="/User/ProfileUser/Index" class="cancel-edit-address" data-dismiss="modal" aria-label="Close">بازگشت</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+

@@ -1,0 +1,35 @@
+﻿@model Brand
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" method="post"
+              data-ajax="true"
+              data-Success="Refresh"
+              enctype="multipart/form-data">
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="BrandId" hidden />
+
+            <div class="form-group">
+                <label asp-for="BrandFaName" class="control-label"></label>
+                <input asp-for="BrandFaName" class="form-control" />
+                <span asp-validation-for="BrandFaName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BrandEnName" class="control-label"></label>
+                <input asp-for="BrandEnName" class="form-control" />
+                <span asp-validation-for="BrandEnName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+                <button type="submit" value="Create" class="btn btn-primary">ویرایش</button>
+            </div>
+
+        </form>
+    </div>
+</div>

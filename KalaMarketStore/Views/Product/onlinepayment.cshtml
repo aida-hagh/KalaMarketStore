@@ -1,0 +1,27 @@
+﻿@{
+}
+
+@if (ViewBag.res == true)
+{
+    <div class="alert alert-success text-center">
+        <span>پرداخت با موفقیت انجام شد </span>
+        <span>شناسه پرداخت شما : @ViewBag.refid</span>
+    </div>
+
+    <div class="return-to-shop text-center">
+        <a href="/" class="backward btn btn-secondary">بازگشت به صفحه اصلی</a>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-danger text-center">
+        <span>خطا در انجام پرداخت</span>
+
+    </div>
+    <div class="return-to-shop text-center">
+        <a href="/" class="backward btn btn-secondary ">بازگشت به صفحه اصلی</a>
+    </div>
+}
+
+

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<QuestionAnswerViewModel>
+@{
+    Layout = null;
+}
+
+<div class="faq">
+    <h2 class="params-headline">
+        پرسش و پاسخ
+        <span>پرسش خود را در مورد محصول مطرح نمایید</span>
+    </h2>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div id="hidden">
+            <span>پاسخ به:</span>
+            <span id="username"></span>
+            <span id="cancell" class="text-info mr-3" style="cursor:pointer;">انصراف</span>
+        </div>
+        <form asp-action="AddQuesOrAnswer" id="submitform" method="post" class="form-faq">
+            <input type="hidden" name="questionid" id="questionid" />
+            <input type="hidden" name="productid" value="@TempData["productid"]" />
+        <div class="form-faq-row mt-4">
+            <div class="form-faq-col">
+                <div class="ui-textarea">
+                    <textarea name="text" id="text" title="متن سوال" class="ui-textarea-field"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-faq-row mt-4">
+            <div class="form-faq-col form-faq-col-submit">
+                <button class="btn-tertiary btn btn-secondary" type="submit">  ثبت   </button>
+                <div class="form-faq-col-agreement d-inline-block mr-5">
+                    <div class="form-auth-row">
+                        <label for="#" class="ui-checkbox mt-1">
+                            <input type="checkbox" value="1" name="login" id="remember">
+                            <span class="ui-checkbox-check"></span>
+                        </label>
+                        <label for="remember" class="remember-me mr-0">اولین پاسخی که به پرسش من داده شد، از طریق ایمیل به من اطلاع دهید. </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+    }
+    else
+    {
+        <div class="alert alert-warning">برای ثبت پرسش لطفا وارد سایت شوید.</div>
+    }
+
+
+    <div id="product-questions-list">
+        @foreach (var item in Model.GroupBy(x => x.QuestionId))
+        {
+            <div class="questions-list">
+                <ul class="faq-list">
+                    <li class="is-question">
+                        <div class="section">
+                            <div class="faq-header">
+                                <span class="icon-faq">?</span>
+                                <p class="h5">
+                                    پرسش :
+                                    <span>@item.First().UserNameQ</span>
+                                </p>
+                            </div>
+                            <p>@item.First().QuestionDesc</p>
+                            <div class="faq-date">
+                                <em>@item.First().CreateDataQ.MiladiToShamsi()</em>
+                            </div>
+                            <a data-username="@item.First().UserNameQ" data-questionid="@item.First().QuestionId" style="cursor:pointer;" class="js-add-answer-btn addAnswer">
+                                به این پرسش پاسخ
+                                دهید
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+       
+
+        @foreach (var item2 in item)
+        {
+            @if (item2.showAnswer.AnswerId>0)
+                {
+                    
+                }
+                    <div class="questions-list answer-questions">
+            <ul class="faq-list">
+                <li class="is-question">
+                    <div class="section">
+                        <div class="faq-header">
+                            <span class="icon-faq"><i class="mdi mdi-storefront"></i></span>
+                            <p class="h5">
+                                پاسخ فروشنده :
+                                <span>@item2.showAnswer.UserNameA</span>
+                            </p>
+                        </div>
+                        <p>@item2.showAnswer.AnswerDesc</p>
+                        <div class="faq-date">
+                            <em>@item2.showAnswer.CreateDataA?.MiladiToShamsi()</em>
+                        </div>
+                   
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        }
+        }
+
+    </div>
+</div>
+
+<script>
+    $("#hidden").hide();
+    SubmitForm();
+
+</script>
